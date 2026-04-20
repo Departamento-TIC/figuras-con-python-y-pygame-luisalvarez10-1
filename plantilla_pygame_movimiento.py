@@ -61,8 +61,8 @@ while not hecho:
         objeto_y += velocidad
 
     # Opcional: evitar que el objeto salga de la pantalla
-    objeto_x = max(RADIO, min(ANCHO - RADIO, objeto_x))
-    objeto_y = max(RADIO, min(ALTO  - RADIO, objeto_y))
+    objeto_x = max(0, min(600, objeto_x))
+    objeto_y = max(0, min(400, objeto_y))
 
     # 3) Fondo de la pantalla (borra el fotograma anterior)
     pantalla.fill(BLANCO)
@@ -72,11 +72,15 @@ while not hecho:
     # -------------------------------------------------------
 
     # Círculo como objeto móvil
-    pygame.draw.circle(pantalla, AZUL, (objeto_x, objeto_y), RADIO)
-    pygame.draw.circle(pantalla, NEGRO, (objeto_x, objeto_y), RADIO, 2)  # borde
-
-    # Puedes sustituirlo por un rectángulo:
-    # pygame.draw.rect(pantalla, ROJO, [objeto_x - 25, objeto_y - 25, 50, 50])
+    pygame.draw.rect(pantalla, AZUL, [objeto_x, objeto_y, 100, 100], 0)
+    pygame.draw.rect(pantalla, NEGRO, [objeto_x, objeto_y, 100, 100], 2)
+    pygame.draw.circle(pantalla, BLANCO, [objeto_x+25, objeto_y +25,], 25)
+    pygame.draw.circle(pantalla, BLANCO, [objeto_x+75, objeto_y+25], 25)
+    pygame.draw.circle(pantalla, NEGRO, [objeto_x+25, objeto_y +25,], 8)
+    pygame.draw.circle(pantalla, NEGRO, [objeto_x+75, objeto_y+25], 8)
+    pygame.draw.line(pantalla, NEGRO, [objeto_x+25, objeto_y+75], [objeto_x+75, objeto_y +75], 4)
+    pygame.draw.line(pantalla, NEGRO, [objeto_x+25, objeto_y+75], [objeto_x+5, objeto_y +65], 4)
+    pygame.draw.line(pantalla, NEGRO, [objeto_x+75, objeto_y+75], [objeto_x+95, objeto_y +65], 4)
 
     # Mostrar la posición actual como texto (útil para depurar)
     fuente = pygame.font.SysFont("Arial", 18)
@@ -91,3 +95,4 @@ while not hecho:
 
 # --- Salir de Pygame ---
 pygame.quit()
+
